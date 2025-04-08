@@ -47,11 +47,9 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             // hero image
-            Placeholder(
-              fallbackHeight: 300,
+            SizedBox(
               child: Image.asset(
                 'assets/images/home_hero.png',
-                height: 200,
               ),
             ),
             
