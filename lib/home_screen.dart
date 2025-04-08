@@ -7,9 +7,39 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Redxspots', style: TextStyle(
-          fontWeight: FontWeight.bold,
-        ),),
+        backgroundColor: const Color(0xFF080C12),
+        toolbarHeight: 120,
+        title: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 1.0),
+              child: Image.asset(
+                'assets/images/logo.png',
+                height: 42,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 5.0),
+              child: SizedBox(
+                height: 36,
+                child: TextField(
+                  style: TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                    hintText: 'Search redxspot',
+                    prefixIcon: Icon(Icons.search, size: 20),
+                    contentPadding: EdgeInsets.symmetric(vertical: 5),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide.none,
+                    ),
+                    filled: true,
+                    fillColor: Colors.white.withValues(),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
         centerTitle: true,
       ),
     );
