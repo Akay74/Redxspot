@@ -42,6 +42,33 @@ class HomeScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // hero image
+            Placeholder(
+              fallbackHeight: 300,
+              child: Image.asset(
+                'assets/images/home_hero.png',
+                height: 200,
+              ),
+            ),
+            
+            // Explore cards
+            Placeholder(
+              fallbackHeight: 200,
+            ),
+            // Trending Places cards
+            Placeholder(
+              fallbackHeight: 200,
+            ),
+            // Popular Places cards
+            Placeholder(
+              fallbackHeight: 200,
+            ),
+          ]
+        ),
+      ),
     );
   }
 }
