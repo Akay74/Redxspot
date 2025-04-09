@@ -54,8 +54,16 @@ class HomeScreen extends StatelessWidget {
             ),
             
             // Explore cards
-            Placeholder(
-              fallbackHeight: 200,
+            SizedBox(
+              child: Row(
+                children: [
+                  Text('Explore all', {
+                    style: TextStyle(
+                      fontSize: 
+                    )
+                  })
+                ],
+              ),
             ),
             // Trending Places cards
             Placeholder(
