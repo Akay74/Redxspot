@@ -62,8 +62,8 @@ class HomeScreen extends StatelessWidget {
                   const Text(
                     'Explore',
                     style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 21,
+                      fontWeight: FontWeight.w500,
                     )
                   ),
                   const Text(
