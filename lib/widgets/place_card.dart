@@ -20,6 +20,7 @@ class PlaceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 0,
+      margin: EdgeInsets.all(0),
       color: Colors.transparent,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,8 +30,8 @@ class PlaceCard extends StatelessWidget {
             borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
             child: Image.asset(
               image,
-              height: 95,
-              width: 120,
+              height: 90,
+              width: 110,
               fit: BoxFit.cover,
             ),
           ),
