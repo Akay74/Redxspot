@@ -19,7 +19,8 @@ class PlaceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 3,
+      elevation: 0,
+      color: Colors.transparent,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -37,9 +38,9 @@ class PlaceCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
-              Text(location, style: TextStyle(color: Colors.grey[600])),
-              Text(subtitle, style: TextStyle(color: Colors.grey[600])),
+              Text(title, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12)),
+              Text(location, style: TextStyle(color: Colors.grey[600], fontSize: 12)),
+              Text(subtitle, style: TextStyle(color: Colors.grey[600], fontSize: 12)),
               Text(rating, style: TextStyle(color: Colors.orange)),
             ],
           ),
