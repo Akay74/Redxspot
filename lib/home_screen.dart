@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './widgets/place_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -16,7 +17,8 @@ class HomeScreen extends StatelessWidget {
               height: 42,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 5.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 5.0),
               child: SizedBox(
                 height: 26,
                 child: TextField(
@@ -24,7 +26,7 @@ class HomeScreen extends StatelessWidget {
                     color: Colors.black,
                     fontSize: 14,
                     fontStyle: FontStyle.italic,
-                    ),
+                  ),
                   decoration: InputDecoration(
                     hintText: 'Search redxspot',
                     prefixIcon: Icon(Icons.search, size: 18),
