@@ -137,16 +137,16 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text('Popular Places',
-                    style: TextStyle(
-                      fontSize: 21,
-                      fontWeight: FontWeight.w500,
-                    )),
+                  style: TextStyle(
+                    fontSize: 21,
+                    fontWeight: FontWeight.w500,
+                  )),
                 const Text('See all',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.red,
-                    ))
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red,
+                  ))
               ],
             ),
           ),
