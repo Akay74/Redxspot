@@ -1,0 +1,50 @@
+import 'package:flutter/material.dart';
+
+class PlaceCard extends StatelessWidget {
+  final String image;
+  final String title;
+  final String location;
+  final String subtitle;
+  final String rating;
+
+  const PlaceCard({
+    required this.image,
+    required this.title,
+    required this.location,
+    required this.subtitle,
+    required this.rating,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 3,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Image
+          ClipRRect(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+            child: Image.asset(
+              image,
+              height: 95,
+              width: 120,
+              fit: BoxFit.cover,
+            ),
+          ),
+          // Text
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+              Text(location, style: TextStyle(color: Colors.grey[600])),
+              Text(subtitle, style: TextStyle(color: Colors.grey[600])),
+              Text(rating, style: TextStyle(color: Colors.orange)),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
