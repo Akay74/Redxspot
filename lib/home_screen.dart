@@ -53,18 +53,32 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             
-            // Explore cards
-            SizedBox(
+            // Explore title
+            Padding(
+              padding: const EdgeInsets.all(12.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Explore all', {
+                  const Text(
+                    'Explore',
                     style: TextStyle(
-                      fontSize: 
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     )
-                  })
+                  ),
+                  const Text(
+                    'See all',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                    )
+                  )
                 ],
               ),
             ),
+            // Explore card
+            Container(),
             // Trending Places cards
             Placeholder(
               fallbackHeight: 200,
