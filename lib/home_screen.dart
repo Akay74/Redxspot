@@ -46,49 +46,73 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // hero image
-            SizedBox(
-              child: Image.asset(
-                'assets/images/home_hero.png',
-              ),
+        child: Column(children: [
+          // hero image
+          SizedBox(
+            child: Image.asset(
+              'assets/images/home_hero.png',
             ),
-            
-            // Explore title
-            Padding(
-              padding: const EdgeInsets.all(12.0),
+          ),
+
+          // Explore title
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+              const Text('Explore',
+                style: TextStyle(
+                  fontSize: 21,
+                  fontWeight: FontWeight.w500,
+                )),
+              const Text('See all',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red,
+                ))
+              ],
+            ),
+          ),
+          // Explore card
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    'Explore',
-                    style: TextStyle(
-                      fontSize: 21,
-                      fontWeight: FontWeight.w500,
-                    )
+                  PlaceCard( // Use the imported widget
+                    image: 'assets/images/gustavo.png',
+                    title: "Gustavo by cubana",
+                    location: "GRA + 3 others",
+                    subtitle: "Dance club/Lounge",
+                    rating: "★★★★★",
                   ),
-                  const Text(
-                    'See all',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.red,
-                    )
-                  )
+                  PlaceCard(
+                    image: 'assets/images/gustavo.png',
+                    title: "Cynthia Garden",
+                    location: "Trans-Ekulu",
+                    subtitle: "Hotel/Gym",
+                    rating: "★★★★★",
+                  ),
+                  PlaceCard(
+                    image: 'assets/images/gustavo.png',
+                    title: "Cynthia Garden",
+                    location: "Independence Layout",
+                    subtitle: "Hotel/Gym",
+                    rating: "★★★★★",
+                  ),
                 ],
               ),
-            ),
-            // Explore card
-            Container(),
-            // Trending Places Title
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Trending Places',
+            )
+          ),
+          // Trending Places Title
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Trending Places',
                     style: TextStyle(
                       fontSize: 21,
                       fontWeight: FontWeight.w500,
