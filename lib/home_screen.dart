@@ -90,29 +90,45 @@ class HomeScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 21,
                       fontWeight: FontWeight.w500,
-                    )
-                  ),
-                  const Text(
-                    'See all',
+                    )),
+                const Text('See all',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                       color: Colors.red,
-                    )
-                  )
-                ],
-              ),
+                    ))
+              ],
             ),
-            // Trending Places cards
-            Placeholder(
-              fallbackHeight: 200,
+          ),
+          // Trending Places cards
+          Placeholder(
+            fallbackHeight: 200,
+          ),
+          // Popular Places Title
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Popular Places',
+                    style: TextStyle(
+                      fontSize: 21,
+                      fontWeight: FontWeight.w500,
+                    )),
+                const Text('See all',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                    ))
+              ],
             ),
-            // Popular Places cards
-            Placeholder(
-              fallbackHeight: 200,
-            ),
-          ]
-        ),
+          ),
+          // Popular Places cards
+          Placeholder(
+            fallbackHeight: 200,
+          ),
+        ]),
       ),
     );
   }
