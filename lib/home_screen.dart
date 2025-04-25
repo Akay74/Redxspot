@@ -81,7 +81,7 @@ class HomeScreen extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  PlaceCard( // Use the imported widget
+                  PlaceCard(
                     image: 'assets/images/gustavo.png',
                     title: "Gustavo by cubana",
                     location: "GRA + 3 others",
@@ -108,7 +108,7 @@ class HomeScreen extends StatelessWidget {
           ),
           // Trending Places Title
           Padding(
-            padding: const EdgeInsets.all(12.0),
+            padding: const EdgeInsets.only(left: 12.0, right: 12.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -127,8 +127,36 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           // Trending Places cards
-          Placeholder(
-            fallbackHeight: 200,
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  PlaceCard(
+                    image: 'assets/images/gustavo.png',
+                    title: "Gustavo by cubana",
+                    location: "GRA + 3 others",
+                    subtitle: "Dance club/Lounge",
+                    rating: "★★★★★",
+                  ),
+                  PlaceCard(
+                    image: 'assets/images/gustavo.png',
+                    title: "Cynthia Garden",
+                    location: "Trans-Ekulu",
+                    subtitle: "Hotel/Gym",
+                    rating: "★★★★★",
+                  ),
+                  PlaceCard(
+                    image: 'assets/images/gustavo.png',
+                    title: "Cynthia Garden",
+                    location: "Independence Layout",
+                    subtitle: "Hotel/Gym",
+                    rating: "★★★★★",
+                  ),
+                ],
+              ),
+            )
           ),
           // Popular Places Title
           Padding(
