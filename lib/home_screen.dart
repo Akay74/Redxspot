@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './widgets/place_card.dart';
+import './widgets/app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -7,44 +8,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF080C12),
-        toolbarHeight: 120,
-        title: Column(
-          children: [
-            Image.asset(
-              'assets/images/logo.png',
-              height: 42,
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 5.0),
-              child: SizedBox(
-                height: 26,
-                child: TextField(
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14,
-                    fontStyle: FontStyle.italic,
-                  ),
-                  decoration: InputDecoration(
-                    hintText: 'Search redxspot',
-                    prefixIcon: Icon(Icons.search, size: 18),
-                    contentPadding: EdgeInsets.symmetric(vertical: 5),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide.none,
-                    ),
-                    filled: true,
-                    fillColor: Colors.white.withValues(),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-        centerTitle: true,
-      ),
+      appBar: CustomAppBar(),
       body: SingleChildScrollView(
         child: Column(children: [
           // hero image
