@@ -39,12 +39,12 @@ class CustomBottomNavBar extends StatelessWidget {
       selectedLabelStyle:const TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w700,
-        height: 1,
+        height: 1.5,
       ),
       unselectedLabelStyle:const TextStyle(
         fontSize: 11,
         fontWeight: FontWeight.w500,
-        height: 1.5,
+        height: 1,
       ),
       onTap: onItemSelected,
     );
