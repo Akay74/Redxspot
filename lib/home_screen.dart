@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './widgets/place_card.dart';
 import './widgets/app_bar.dart';
+import './widgets/bottom_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
