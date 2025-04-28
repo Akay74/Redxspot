@@ -23,14 +23,27 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(),
-      body: SingleChildScrollView(
-        child: Column(children: [
-          // hero image
-          SizedBox(
-            child: Image.asset(
-              'assets/images/home_hero.png',
-            ),
-          ),
+      body: _selectedIndex == 0 
+          ? _buildHomeContent() 
+          : Center(child: Text('Content for ${_getPageTitle(_selectedIndex)}')),
+      bottomNavigationBar: CustomBottomNavBar(
+        selectedIndex: _selectedIndex,
+        onItemSelected: _onItemSelected,
+      ),
+    );
+  }
+
+  // Helper method to get page titles
+  String _getPageTitle(int index) {
+    switch (index) {
+      case 0: return 'Home';
+      case 1: return 'Hot Alerts';
+      case 2: return 'Categories';
+      case 3: return 'Locations';
+      default: return 'Unknown';
+    }
+  }
+
 
           // Explore title
           Padding(
