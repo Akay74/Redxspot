@@ -13,8 +13,8 @@ class PlaceCard extends StatelessWidget {
     required this.location,
     required this.subtitle,
     required this.rating,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

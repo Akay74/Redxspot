@@ -29,14 +29,14 @@ class CustomBottomNavBar extends StatelessWidget {
   };
 
   CustomBottomNavBar({
-    Key? key,
+    super.key,
     required this.selectedIndex,
     required this.onItemSelected,
     this.selectedColor = const Color(0xFFB33000),
     this.unselectedColor = Colors.grey,
     this.backgroundColor = const Color(0xFF080C12),
     this.iconSize = 24.0,
-  }) : super(key: key);
+  });
 
   Widget _buildTabIcon(int index) {
     final isSelected = selectedIndex == index;
