@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 import 'hot_alerts_screen.dart';
+import 'categories.dart';
 import './widgets/bottom_bar.dart';
 
 void main() {
@@ -32,6 +33,7 @@ class _MainNavigatorState extends State<MainNavigator> {
   final List<Widget> _screens = [
     const HomeScreen(),
     const HotAlertsScreen(),
+    const CategoriesScreen(),
   ];
 
   void _onItemTapped(int index) {
