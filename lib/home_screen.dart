@@ -10,11 +10,11 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(),
-      body: _buildHomeContent(),
+      body: _buildHomeContent(context),
     );
   }
 
-  Widget _buildHomeContent() {
+  Widget _buildHomeContent(BuildContext context) {
     return SingleChildScrollView(
       child: Column(children: [
         // hero image
@@ -23,25 +23,25 @@ class HomeScreen extends StatelessWidget {
         ),
 
         // Explore section
-        _buildSection('Explore'),
+        _buildSection(context, 'Explore'),
         _buildPlaceCards(),
 
         // Trending Places section
-        _buildSection('Trending Places'),
+        _buildSection(context, 'Trending Places'),
         _buildPlaceCards(),
 
         // Popular Places section
-        _buildSection('Popular Places'),
+        _buildSection(context, 'Popular Places'),
         _buildPlaceCards(),
 
         // Most Visited section
-        _buildSection('Most Visited'),
+        _buildSection(context, 'Most Visited'),
         _buildPlaceCards(),
       ]),
     );
   }
 
-  Widget _buildSection(String title) {
+  Widget _buildSection(BuildContext context, String title) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Row(
