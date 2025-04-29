@@ -1,29 +1,55 @@
-// hot_alerts_screen.dart
 import 'package:flutter/material.dart';
 import './widgets/place_card.dart';
 import './widgets/app_bar.dart';
+import './widgets/location_selector.dart';
 
-class LocationsScreen extends StatelessWidget {
+class LocationsScreen extends StatefulWidget {
   const LocationsScreen({super.key});
+
+  @override
+  State<LocationsScreen> createState() => _LocationsScreenState();
+}
+
+class _LocationsScreenState extends State<LocationsScreen> {
+  String _currentLocation = 'New Haven'; // Track selected location
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(),
-      body: _buildLocationsContent(),
+      body: Column(
+        children: [
+          // Add the LocationSelector at the top
+          LocationSelector(
+            onLocationSelected: (location) {
+              setState(() {
+                _currentLocation = location;
+              });
+              // You could add location-specific data fetching here
+            },
+          ),
+          // Your existing content (now wrapped in Expanded)
+          Expanded(
+            child: _buildLocationsContent(),
+          ),
+        ],
+      ),
     );
   }
 
   Widget _buildLocationsContent() {
     return SingleChildScrollView(
       child: Column(children: [
-        // hero image
+        // hero image (now shows location-specific image)
         SizedBox(
-          child: Image.asset('assets/images/locations_hero.png'),
+          child: Image.asset(
+            'assets/images/locations_hero.png',
+            // 'assets/images/locations/${_currentLocation.toLowerCase().replaceAll(' ', '_')}_hero.png',
+          ),
         ),
         
-        // Restaurants section
-        _buildSection('Restaurants'),
+        // Restaurants section (now shows location-specific places)
+        _buildSection('Explore'),
         _buildPlaceCards(),
         
         // Bars section
@@ -72,17 +98,10 @@ class LocationsScreen extends StatelessWidget {
   }
 
   Widget _buildPlaceCards() {
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: SizedBox(
-        height: 170,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: 3,
-          padding: const EdgeInsets.symmetric(vertical: 4),
-          itemBuilder: (context, index) {
-            final placeData = [
-              {
+    // Example of location-specific data (expand this in your actual implementation)
+    final locationPlaceData = {
+      'New Haven': [
+        {
                 'image': 'assets/images/gustavo.png',
                 'title': 'Gustavo by cubana',
                 'location': 'GRA + 3 others',
@@ -103,8 +122,66 @@ class LocationsScreen extends StatelessWidget {
                 'subtitle': 'Hotel/Gym',
                 'rating': '★★★★★',
               },
-            ];
-            
+      ],
+      'Ind.Layout': [
+        {
+                'image': 'assets/images/gustavo.png',
+                'title': 'Gustavo by cubana',
+                'location': 'GRA + 3 others',
+                'subtitle': 'Dance club/Lounge',
+                'rating': '★★★★★',
+              },
+              {
+                'image': 'assets/images/gym.png',
+                'title': 'Cynthia Garden',
+                'location': 'Trans-Ekulu',
+                'subtitle': 'Hotel/Gym',
+                'rating': '★★★★★',
+              },
+              {
+                'image': 'assets/images/extreme_lounge.png',
+                'title': 'Extreme Lounge',
+                'location': 'Independence Layout',
+                'subtitle': 'Hotel/Gym',
+                'rating': '★★★★★',
+              },
+      ],
+      // Add data for other locations...
+    };
+
+    final placeData = locationPlaceData[_currentLocation] ?? [
+      {
+        'image': 'assets/images/gustavo.png',
+        'title': 'Gustavo by cubana',
+        'location': _currentLocation,
+        'subtitle': 'Dance club/Lounge',
+        'rating': '★★★★★',
+      },
+      {
+        'image': 'assets/images/gym.png',
+        'title': 'Cynthia Garden',
+        'location': _currentLocation,
+        'subtitle': 'Hotel/Gym',
+        'rating': '★★★★★',
+      },
+      {
+        'image': 'assets/images/extreme_lounge.png',
+        'title': 'Extreme Lounge',
+        'location': _currentLocation,
+        'subtitle': 'Lounge/Bar',
+        'rating': '★★★★★',
+      },
+    ];
+
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: SizedBox(
+        height: 170,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: placeData.length,
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.only(right: 16),
               child: PlaceCard(
