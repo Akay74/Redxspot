@@ -215,7 +215,8 @@ class _HomeScreenState extends State<HomeScreen> {
           child: SizedBox(
             height: 170,
             child: ListView.builder(
-              scrollDirection: Axis.horizontal,itemCount: 3,
+              scrollDirection: Axis.horizontal,
+              itemCount: 3,
               padding: const EdgeInsets.symmetric(vertical: 4),
               itemBuilder: (context, index) {
               final placeData = [
