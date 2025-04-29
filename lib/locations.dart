@@ -98,58 +98,7 @@ class _LocationsScreenState extends State<LocationsScreen> {
   }
 
   Widget _buildPlaceCards() {
-    // Example of location-specific data (expand this in your actual implementation)
-    final locationPlaceData = {
-      'New Haven': [
-        {
-                'image': 'assets/images/gustavo.png',
-                'title': 'Gustavo by cubana',
-                'location': 'GRA + 3 others',
-                'subtitle': 'Dance club/Lounge',
-                'rating': '★★★★★',
-              },
-              {
-                'image': 'assets/images/gym.png',
-                'title': 'Cynthia Garden',
-                'location': 'Trans-Ekulu',
-                'subtitle': 'Hotel/Gym',
-                'rating': '★★★★★',
-              },
-              {
-                'image': 'assets/images/extreme_lounge.png',
-                'title': 'Extreme Lounge',
-                'location': 'Independence Layout',
-                'subtitle': 'Hotel/Gym',
-                'rating': '★★★★★',
-              },
-      ],
-      'Ind.Layout': [
-        {
-                'image': 'assets/images/gustavo.png',
-                'title': 'Gustavo by cubana',
-                'location': 'GRA + 3 others',
-                'subtitle': 'Dance club/Lounge',
-                'rating': '★★★★★',
-              },
-              {
-                'image': 'assets/images/gym.png',
-                'title': 'Cynthia Garden',
-                'location': 'Trans-Ekulu',
-                'subtitle': 'Hotel/Gym',
-                'rating': '★★★★★',
-              },
-              {
-                'image': 'assets/images/extreme_lounge.png',
-                'title': 'Extreme Lounge',
-                'location': 'Independence Layout',
-                'subtitle': 'Hotel/Gym',
-                'rating': '★★★★★',
-              },
-      ],
-      // Add data for other locations...
-    };
-
-    final placeData = locationPlaceData[_currentLocation] ?? [
+    final placeData = [
       {
         'image': 'assets/images/gustavo.png',
         'title': 'Gustavo by cubana',
