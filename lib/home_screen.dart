@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import './widgets/place_card.dart';
 import './widgets/app_bar.dart';
+import 'section_details_page.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -52,12 +53,23 @@ class HomeScreen extends StatelessWidget {
                 fontSize: 21,
                 fontWeight: FontWeight.w500,
               )),
-          const Text('See all',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Colors.red,
-              ))
+          TextButton(
+            onPressed: () {
+              // Navigate to a new page based on the title
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SectionDetailsPage(title: title),
+                ),
+              );
+            },
+            child: const Text('See all',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red,
+                )),
+          )
         ],
       ),
     );
@@ -96,7 +108,7 @@ class HomeScreen extends StatelessWidget {
                 'rating': '★★★★★',
               },
             ];
-            
+
             return Padding(
               padding: const EdgeInsets.only(right: 16),
               child: PlaceCard(
