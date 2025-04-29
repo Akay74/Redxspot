@@ -90,15 +90,15 @@ class CategoriesScreen extends StatelessWidget {
                 'rating': '★★★★★',
               },
               {
-                'image': 'assets/images/gustavo.png',
+                'image': 'assets/images/gym.png',
                 'title': 'Cynthia Garden',
                 'location': 'Trans-Ekulu',
                 'subtitle': 'Hotel/Gym',
                 'rating': '★★★★★',
               },
               {
-                'image': 'assets/images/gustavo.png',
-                'title': 'Cynthia Garden',
+                'image': 'assets/images/extreme_lounge.png',
+                'title': 'Extreme Lounge',
                 'location': 'Independence Layout',
                 'subtitle': 'Hotel/Gym',
                 'rating': '★★★★★',
