@@ -19,7 +19,7 @@ class CategoriesScreen extends StatelessWidget {
       child: Column(children: [
         // hero image
         SizedBox(
-          child: Image.asset('assets/images/categories.png'),
+          child: Image.asset('assets/images/categories_hero.png'),
         ),
         
         // Restaurants section
