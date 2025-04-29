@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:redxspots/home_screen.dart';
+import 'home_screen.dart';
+import 'hot_alerts_screen.dart';
+import './widgets/bottom_bar.dart';
 
 void main() {
   runApp(const MyApp());
