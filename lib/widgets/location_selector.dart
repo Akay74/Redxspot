@@ -14,7 +14,7 @@ class _LocationSelectorState extends State<LocationSelector> {
 
   final List<String> _locations = [
     'New Haven',
-    'Ind.Layout',
+    'Ind. Layout',
     'Trans-Ekulu',
     'Uwani',
   ];
@@ -38,7 +38,7 @@ class _LocationSelectorState extends State<LocationSelector> {
               widget.onLocationSelected(location);
             },
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 7),
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 border: Border(
@@ -51,7 +51,7 @@ class _LocationSelectorState extends State<LocationSelector> {
               child: Text(
                 location,
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 13,
                   fontWeight: isSelected ? FontWeight.w700 : FontWeight.w600,
                   color: isSelected ? Colors.red : Colors.grey,
                 ),
