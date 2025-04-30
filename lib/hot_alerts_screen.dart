@@ -1,5 +1,6 @@
 // hot_alerts_screen.dart
 import 'package:flutter/material.dart';
+import 'section_details_page.dart';
 import './widgets/place_card.dart';
 import './widgets/app_bar.dart';
 
@@ -10,11 +11,11 @@ class HotAlertsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(),
-      body: _buildHotAlertsContent(),
+      body: _buildHotAlertsContent(context),
     );
   }
 
-  Widget _buildHotAlertsContent() {
+  Widget _buildHotAlertsContent(BuildContext context) {
     return SingleChildScrollView(
       child: Column(children: [
         // hero image
@@ -23,21 +24,21 @@ class HotAlertsScreen extends StatelessWidget {
         ),
         
         // Hotspots section
-        _buildSection('HotSpots'),
+        _buildSection(context, 'HotSpots'),
         _buildPlaceCards(),
         
         // New Places section
-        _buildSection('New Places'),
+        _buildSection(context, 'New Places'),
         _buildPlaceCards(),
 
         // Spotlight section
-        _buildSection('Weekend Spotlight'),
+        _buildSection(context, 'Weekend Spotlight'),
         _buildPlaceCards(),
       ]),
     );
   }
 
-  Widget _buildSection(String title) {
+  Widget _buildSection(BuildContext context, String title) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Row(
@@ -48,12 +49,23 @@ class HotAlertsScreen extends StatelessWidget {
                 fontSize: 21,
                 fontWeight: FontWeight.w500,
               )),
-          const Text('See all',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Colors.red,
-              ))
+          TextButton(
+            onPressed: () {
+              // Navigate to a new page based on the title
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SectionDetailsPage(title: title),
+                ),
+              );
+            },
+            child: const Text('See all',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red,
+                )),
+          )
         ],
       ),
     );

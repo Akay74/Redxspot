@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'section_details_page.dart';
 import './widgets/place_card.dart';
 import './widgets/app_bar.dart';
 import './widgets/location_selector.dart';
@@ -30,14 +31,14 @@ class _LocationsScreenState extends State<LocationsScreen> {
           ),
           // Your existing content (now wrapped in Expanded)
           Expanded(
-            child: _buildLocationsContent(),
+            child: _buildLocationsContent(context),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildLocationsContent() {
+  Widget _buildLocationsContent(BuildContext context) {
     return SingleChildScrollView(
       child: Column(children: [
         // hero image (now shows location-specific image)
@@ -49,33 +50,33 @@ class _LocationsScreenState extends State<LocationsScreen> {
         ),
         
         // Restaurants section (now shows location-specific places)
-        _buildSection('Explore'),
+        _buildSection(context, 'Explore'),
         _buildPlaceCards(),
         
         // Bars section
-        _buildSection('Bars'),
+        _buildSection(context, 'Bars'),
         _buildPlaceCards(),
 
         // Clubs section
-        _buildSection('Clubs'),
+        _buildSection(context, 'Clubs'),
         _buildPlaceCards(),
 
         // Gym/Sports section
-        _buildSection('Gym/Sports'),
+        _buildSection(context, 'Gym/Sports'),
         _buildPlaceCards(),
 
         // Hotels section
-        _buildSection('Hotels'),
+        _buildSection(context, 'Hotels'),
         _buildPlaceCards(),
 
         // Malls section
-        _buildSection('Malls'),
+        _buildSection(context, 'Malls'),
         _buildPlaceCards(),
       ]),
     );
   }
 
-  Widget _buildSection(String title) {
+  Widget _buildSection(BuildContext context, String title) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Row(
@@ -86,12 +87,23 @@ class _LocationsScreenState extends State<LocationsScreen> {
                 fontSize: 21,
                 fontWeight: FontWeight.w500,
               )),
-          const Text('See all',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Colors.red,
-              ))
+          TextButton(
+            onPressed: () {
+              // Navigate to a new page based on the title
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SectionDetailsPage(title: title),
+                ),
+              );
+            },
+            child: const Text('See all',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red,
+                )),
+          )
         ],
       ),
     );
