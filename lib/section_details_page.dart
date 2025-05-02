@@ -82,7 +82,7 @@ class SectionDetailsPage extends StatelessWidget {
         'rating': '★★★★★',
       },
       {
-        'image': 'assets/images/extreme_lounge.png',
+        'image': 'assets/images/gustavo.png',
         'title': 'Extreme Lounge',
         'location': 'Independence Layout',
         'subtitle': 'Hotel/Gym',
@@ -103,7 +103,7 @@ class SectionDetailsPage extends StatelessWidget {
         'rating': '★★★★★',
       },
       {
-        'image': 'assets/images/extreme_lounge.png',
+        'image': 'assets/images/gym.png',
         'title': 'Extreme Lounge',
         'location': 'Independence Layout',
         'subtitle': 'Hotel/Gym',
