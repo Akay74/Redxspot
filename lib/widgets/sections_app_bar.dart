@@ -5,7 +5,7 @@ class SectionsAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   const SectionsAppBar({
     super.key,
-    this.height = 120,
+    this.height = 100,
   });
 
   @override
