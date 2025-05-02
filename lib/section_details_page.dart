@@ -23,7 +23,7 @@ class SectionDetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: SectionsAppBar(),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             SectionHeader(
@@ -34,13 +34,13 @@ class SectionDetailsPage extends StatelessWidget {
             Expanded(
               child: Center(
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 600),
+                  constraints: const BoxConstraints(maxWidth: 570),
                   child: GridView.builder(
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
-                      childAspectRatio: 0.75, // Increased card size
+                      childAspectRatio: 0.70,
                     ),
                     itemCount: displayItems.length,
                     itemBuilder: (context, index) {
@@ -52,6 +52,7 @@ class SectionDetailsPage extends StatelessWidget {
                           location: item['location']!,
                           subtitle: item['subtitle']!,
                           rating: item['rating']!,
+                          onTap: () => _showPlaceholder(context),
                         ),
                       );
                     },
