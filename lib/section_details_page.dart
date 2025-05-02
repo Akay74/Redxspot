@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/sections_app_bar.dart';
 import '../widgets/sections_header.dart';
-import '../widgets/place_card.dart';
+import '../widgets/sections_grid_items.dart';
 
 class SectionDetailsPage extends StatelessWidget {
   final String title;
@@ -46,8 +46,7 @@ class SectionDetailsPage extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final item = displayItems[index];
                       return GestureDetector(
-                        onTap: () => _showPlaceholder(context),
-                        child: PlaceCard(
+                        child: SectionGridItem(
                           image: item['image']!,
                           title: item['title']!,
                           location: item['location']!,
