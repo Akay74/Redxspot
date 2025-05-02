@@ -19,8 +19,53 @@ class SectionDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SectionsAppBar(),
-      body: Center(
-        child: Text('Details for $title section'),
+
+  List<Map<String, String>> _generateDefaultItems(String category) {
+    return [
+      {
+        'image': 'assets/images/gustavo.png',
+        'title': 'Gustavo by cubana',
+        'location': 'GRA + 3 others',
+        'subtitle': 'Dance club/Lounge',
+        'rating': '★★★★★',
+      },
+      {
+        'image': 'assets/images/gym.png',
+        'title': 'Cynthia Garden',
+        'location': 'Trans-Ekulu',
+        'subtitle': 'Hotel/Gym',
+        'rating': '★★★★★',
+      },
+      {
+        'image': 'assets/images/extreme_lounge.png',
+        'title': 'Extreme Lounge',
+        'location': 'Independence Layout',
+        'subtitle': 'Hotel/Gym',
+        'rating': '★★★★★',
+      },
+      {
+        'image': 'assets/images/gustavo.png',
+        'title': 'Gustavo by cubana',
+        'location': 'GRA + 3 others',
+        'subtitle': 'Dance club/Lounge',
+        'rating': '★★★★★',
+      },
+      {
+        'image': 'assets/images/gym.png',
+        'title': 'Cynthia Garden',
+        'location': 'Trans-Ekulu',
+        'subtitle': 'Hotel/Gym',
+        'rating': '★★★★★',
+      },
+      {
+        'image': 'assets/images/extreme_lounge.png',
+        'title': 'Extreme Lounge',
+        'location': 'Independence Layout',
+        'subtitle': 'Hotel/Gym',
+        'rating': '★★★★★',
+      },
+    ];
+  }
       ),
     );
   }
