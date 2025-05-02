@@ -5,8 +5,15 @@ import '../widgets/place_card.dart';
 
 class SectionDetailsPage extends StatelessWidget {
   final String title;
+  final String? subtitle;
+  final List<Map<String, String>>? items;
 
-  const SectionDetailsPage({super.key, required this.title});
+  const SectionDetailsPage({
+    super.key,
+    required this.title,
+    this.subtitle,
+    this.items,
+  });
 
   @override
   Widget build(BuildContext context) {
