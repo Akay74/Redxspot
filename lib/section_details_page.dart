@@ -66,6 +66,19 @@ class SectionDetailsPage extends StatelessWidget {
       },
     ];
   }
+
+  void _showPlaceholder(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Coming Soon'),
+        content: const Text('This feature is under development'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('OK'),
+          ),
+        ],
       ),
     );
   }
