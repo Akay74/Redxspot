@@ -17,8 +17,54 @@ class SectionDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final displayItems = items ?? _generateDefaultItems(title);
+    final displaySubtitle = subtitle ?? 'Explore $title locations';
+
     return Scaffold(
       appBar: SectionsAppBar(),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            SectionHeader(
+              title: title,
+              subtitle: displaySubtitle,
+            ),
+            const SizedBox(height: 16),
+            Expanded(
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 600),
+                  child: GridView.builder(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      childAspectRatio: 0.75, // Increased card size
+                    ),
+                    itemCount: displayItems.length,
+                    itemBuilder: (context, index) {
+                      final item = displayItems[index];
+                      return GestureDetector(
+                        onTap: () => _showPlaceholder(context),
+                        child: PlaceCard(
+                          image: item['image']!,
+                          title: item['title']!,
+                          location: item['location']!,
+                          subtitle: item['subtitle']!,
+                          rating: item['rating']!,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   List<Map<String, String>> _generateDefaultItems(String category) {
     return [
