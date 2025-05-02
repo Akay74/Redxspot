@@ -29,13 +29,12 @@ class SectionGridItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Image with fixed dimensions
             ClipRRect(
               borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
               child: Image.asset(
                 image,
                 height: 90,
-                width: double.infinity, // Fills grid cell width
+                width: 130,
                 fit: BoxFit.cover,
               ),
             ),
