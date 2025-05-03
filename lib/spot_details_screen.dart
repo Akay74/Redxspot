@@ -116,6 +116,25 @@ class _SpotDetailsScreenState extends State<SpotDetailsScreen> {
                 ),
               ),
             ),
+            
+            // Directions button
+            Container(
+              alignment: Alignment.centerRight,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red[900],
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+                child: const Text('Directions'),
+              ),
+            ),
+            const SizedBox(height: 10),
             // Category, Rating and Established
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
