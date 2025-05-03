@@ -26,7 +26,7 @@ class SectionsAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           // Row containing back button and search field
           Padding(
-            padding: const EdgeInsets.only(top: 8.0),
+            padding: const EdgeInsets.symmetric(vertical: 5.0),
             child: Row(
               children: [
                 IconButton(
