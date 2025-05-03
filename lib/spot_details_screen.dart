@@ -77,80 +77,45 @@ class _SpotDetailsScreenState extends State<SpotDetailsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Header Image with Place Name and Address
-            Stack(
-              children: [
-                // Main Image
-                Container(
-                  width: double.infinity,
-                  height: 200,
-                  decoration: BoxDecoration(
-                    image: const DecorationImage(
-                      image: AssetImage('assets/images/spot_details_hero.png'),
-                      fit: BoxFit.cover,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                
-                // Title and Location overlay
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Colors.black.withAlpha(128),
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(8),
-                        bottomRight: Radius.circular(8),
-                      ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Platinum Lounge',
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
+            // Title and Location overlay
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.spotData['name'] ?? 'Spot Name',
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
                         ),
-                        const SizedBox(height: 4),
-                        Text(
-                          '5 Umuwani St, Asata, Enugu, Nigeria',
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                color: Colors.white,
-                              ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    widget.spotData['address'] ?? 'Address not available',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Colors.white,
                         ),
-                      ],
-                    ),
                   ),
-                ),
-                
-                // Directions button
-                Positioned(
-                  top: 16,
-                  right: 16,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                    child: const Text('Directions'),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-            
-            const SizedBox(height: 16),
-            
+            // Hero Image
+            Container(
+              width: double.infinity,
+              height: 170,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  // Handle both remote URLs and asset images
+                  image: widget.spotData['imageUrl'] != null
+                      ? NetworkImage(widget.spotData['imageUrl'])
+                      : widget.spotData['imageAsset'] != null
+                          ? AssetImage(widget.spotData['imageAsset']) as ImageProvider
+                          : const AssetImage('assets/images/spot_details_hero.png') as ImageProvider,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
             // Category, Rating and Established
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
