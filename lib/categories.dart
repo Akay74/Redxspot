@@ -1,4 +1,4 @@
-// hot_alerts_screen.dart
+// categories_screen.dart
 import 'package:flutter/material.dart';
 import 'section_details_page.dart';
 import './widgets/place_card.dart';
