@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import '../widgets/sections_app_bar.dart';
 
 class SpotDetailsScreen extends StatefulWidget {
+  final Map<String, dynamic> spotData;
+
   const SpotDetailsScreen({
     super.key,
+    required this.spotData,
   });
 
   @override
