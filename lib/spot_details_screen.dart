@@ -49,6 +49,19 @@ class _SpotDetailsScreenState extends State<SpotDetailsScreen> {
     },
   ];
 
+  Future<void> _loadMoreReviews() async {
+    setState(() {
+      _isLoadingReviews = true;
+    });
+
+    // Simulate network delay
+    await Future.delayed(const Duration(seconds: 2));
+
+    setState(() {
+      _showAllReviews = true;
+      _isLoadingReviews = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
