@@ -1,8 +1,8 @@
-// home_screen.dart
 import 'package:flutter/material.dart';
 import './widgets/place_card.dart';
 import './widgets/app_bar.dart';
 import 'section_details_page.dart';
+import 'spot_details_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -25,19 +25,19 @@ class HomeScreen extends StatelessWidget {
 
         // Explore section
         _buildSection(context, 'Explore'),
-        _buildPlaceCards(),
+        _buildPlaceCards(context),
 
         // Trending Places section
         _buildSection(context, 'Trending Places'),
-        _buildPlaceCards(),
+        _buildPlaceCards(context),
 
         // Popular Places section
         _buildSection(context, 'Popular Places'),
-        _buildPlaceCards(),
+        _buildPlaceCards(context),
 
         // Most Visited section
         _buildSection(context, 'Most Visited'),
-        _buildPlaceCards(),
+        _buildPlaceCards(context),
       ]),
     );
   }
@@ -75,7 +75,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPlaceCards() {
+  Widget _buildPlaceCards(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: SizedBox(
@@ -111,12 +111,22 @@ class HomeScreen extends StatelessWidget {
 
             return Padding(
               padding: const EdgeInsets.only(right: 16),
-              child: PlaceCard(
-                image: placeData[index]['image']!,
-                title: placeData[index]['title']!,
-                location: placeData[index]['location']!,
-                subtitle: placeData[index]['subtitle']!,
-                rating: placeData[index]['rating']!,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SpotDetailsScreen(),
+                    ),
+                  );
+                },
+                child: PlaceCard(
+                  image: placeData[index]['image']!,
+                  title: placeData[index]['title']!,
+                  location: placeData[index]['location']!,
+                  subtitle: placeData[index]['subtitle']!,
+                  rating: placeData[index]['rating']!,
+                ),
               ),
             );
           },
