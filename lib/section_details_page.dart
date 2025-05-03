@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../widgets/sections_app_bar.dart';
 import '../widgets/sections_header.dart';
 import '../widgets/sections_grid_items.dart';
+import 'spot_details_screen.dart';
 
 class SectionDetailsPage extends StatelessWidget {
   final String title;
@@ -37,7 +38,8 @@ class SectionDetailsPage extends StatelessWidget {
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 570),
                   child: GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
@@ -53,7 +55,14 @@ class SectionDetailsPage extends StatelessWidget {
                           location: item['location']!,
                           subtitle: item['subtitle']!,
                           rating: item['rating']!,
-                          onTap: () => _showPlaceholder(context),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SpotDetailsScreen(),
+                              ),
+                            );
+                          },
                         ),
                       );
                     },
@@ -112,21 +121,5 @@ class SectionDetailsPage extends StatelessWidget {
         'rating': '★★★★★',
       },
     ];
-  }
-
-  void _showPlaceholder(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Coming Soon'),
-        content: const Text('This feature is under development'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('OK'),
-          ),
-        ],
-      ),
-    );
   }
 }
