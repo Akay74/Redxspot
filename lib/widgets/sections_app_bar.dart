@@ -14,6 +14,7 @@ class SectionsAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: const Color(0xFF080C12),
       toolbarHeight: height,
       automaticallyImplyLeading: false, // Disable default back button behavior
+      titleSpacing: 0,
       title: Column(
         children: [
           // Centered logo at the top
@@ -28,17 +29,18 @@ class SectionsAppBar extends StatelessWidget implements PreferredSizeWidget {
             padding: const EdgeInsets.only(top: 8.0),
             child: Row(
               children: [
-                // Back button
                 IconButton(
-                  icon: const Icon(Icons.arrow_back, color: Colors.white),
+                  icon: const Icon(Icons.chevron_left, color: Colors.white),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
+                  padding: const EdgeInsets.only(left: 4.0, right: 0.0),
+                  constraints: const BoxConstraints(),
                 ),
                 // Expanded search field to take remaining space
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                    padding: const EdgeInsets.only(right: 8.0, left: 4.0),
                     child: SizedBox(
                       height: 26,
                       child: TextField(
