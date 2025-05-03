@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import './widgets/place_card.dart';
 import './widgets/app_bar.dart';
+import 'section_details_page.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -10,11 +11,11 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(),
-      body: _buildHomeContent(),
+      body: _buildHomeContent(context),
     );
   }
 
-  Widget _buildHomeContent() {
+  Widget _buildHomeContent(BuildContext context) {
     return SingleChildScrollView(
       child: Column(children: [
         // hero image
@@ -23,25 +24,25 @@ class HomeScreen extends StatelessWidget {
         ),
 
         // Explore section
-        _buildSection('Explore'),
+        _buildSection(context, 'Explore'),
         _buildPlaceCards(),
 
         // Trending Places section
-        _buildSection('Trending Places'),
+        _buildSection(context, 'Trending Places'),
         _buildPlaceCards(),
 
         // Popular Places section
-        _buildSection('Popular Places'),
+        _buildSection(context, 'Popular Places'),
         _buildPlaceCards(),
 
         // Most Visited section
-        _buildSection('Most Visited'),
+        _buildSection(context, 'Most Visited'),
         _buildPlaceCards(),
       ]),
     );
   }
 
-  Widget _buildSection(String title) {
+  Widget _buildSection(BuildContext context, String title) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Row(
@@ -52,12 +53,23 @@ class HomeScreen extends StatelessWidget {
                 fontSize: 21,
                 fontWeight: FontWeight.w500,
               )),
-          const Text('See all',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Colors.red,
-              ))
+          TextButton(
+            onPressed: () {
+              // Navigate to a new page based on the title
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SectionDetailsPage(title: title),
+                ),
+              );
+            },
+            child: const Text('See all',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red,
+                )),
+          )
         ],
       ),
     );
@@ -96,7 +108,7 @@ class HomeScreen extends StatelessWidget {
                 'rating': '★★★★★',
               },
             ];
-            
+
             return Padding(
               padding: const EdgeInsets.only(right: 16),
               child: PlaceCard(
