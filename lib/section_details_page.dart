@@ -8,19 +8,19 @@ class SectionDetailsPage extends StatelessWidget {
   final String title;
   final String? subtitle;
   final List<Map<String, String>>? items;
-
+  
   const SectionDetailsPage({
     super.key,
     required this.title,
     this.subtitle,
     this.items,
   });
-
+  
   @override
   Widget build(BuildContext context) {
     final displayItems = items ?? _generateDefaultItems(title);
     final displaySubtitle = subtitle ?? 'Explore $title locations';
-
+    
     return Scaffold(
       appBar: SectionsAppBar(),
       body: Padding(
@@ -48,6 +48,19 @@ class SectionDetailsPage extends StatelessWidget {
                     itemCount: displayItems.length,
                     itemBuilder: (context, index) {
                       final item = displayItems[index];
+                      
+                      // Convert item data to format expected by SpotDetailsScreen
+                      final spotData = {
+                        'name': item['title'],
+                        'address': item['location'],
+                        'category': item['subtitle'],
+                        'rating': 5, // Assuming 5 stars based on the rating string
+                        'established': '2021', // Default value
+                        'description': 'A popular ${item['subtitle']} located in ${item['location']}',
+                        // Using the asset image path for now
+                        'imageAsset': item['image'],
+                      };
+                      
                       return GestureDetector(
                         child: SectionGridItem(
                           image: item['image']!,
@@ -59,7 +72,9 @@ class SectionDetailsPage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const SpotDetailsScreen(),
+                                builder: (context) => SpotDetailsScreen(
+                                  spotData: spotData,
+                                ),
                               ),
                             );
                           },
@@ -75,7 +90,7 @@ class SectionDetailsPage extends StatelessWidget {
       ),
     );
   }
-
+  
   List<Map<String, String>> _generateDefaultItems(String category) {
     return [
       {

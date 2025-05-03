@@ -109,6 +109,18 @@ class HomeScreen extends StatelessWidget {
               },
             ];
 
+            // Convert place data to format expected by SpotDetailsScreen
+            final spotData = {
+              'name': placeData[index]['title'],
+              'address': placeData[index]['location'],
+              'category': placeData[index]['subtitle'],
+              'rating': 5, // Assuming 5 stars based on the ratings string
+              'established': '2021', // Default value
+              'description': 'A popular spot in ${placeData[index]['location']}',
+              // Using the asset image path for now
+              'imageAsset': placeData[index]['image'],
+            };
+
             return Padding(
               padding: const EdgeInsets.only(right: 16),
               child: GestureDetector(
@@ -116,7 +128,9 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const SpotDetailsScreen(),
+                      builder: (context) => SpotDetailsScreen(
+                        spotData: spotData,
+                      ),
                     ),
                   );
                 },
