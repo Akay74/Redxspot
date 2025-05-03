@@ -76,4 +76,78 @@ class _SpotDetailsScreenState extends State<SpotDetailsScreen> {
       ),
     );
   }
+
+  Widget _buildReviewCard(BuildContext context, Map<String, dynamic> review) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Reviewer info row
+          Row(
+            children: [
+              // Avatar
+              CircleAvatar(
+                backgroundColor: Colors.grey[300],
+                child: const Icon(Icons.person, color: Colors.grey),
+              ),
+              const SizedBox(width: 12),
+              
+              // Name and date
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      review['name'],
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    // Stars
+                    Row(
+                      children: List.generate(
+                        review['rating'],
+                        (index) => const Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                          size: 16,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              
+              // Date
+              Text(
+                review['date'],
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Colors.grey,
+                    ),
+              ),
+            ],
+          ),
+          
+          const SizedBox(height: 8),
+          
+          // Review title
+          Text(
+            review['title'],
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
+          
+          const SizedBox(height: 4),
+          
+          // Review content
+          Text(
+            review['comment'],
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+        ],
+      ),
+    );
+  }
 }
