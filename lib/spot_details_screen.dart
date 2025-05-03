@@ -136,113 +136,118 @@ class _SpotDetailsScreenState extends State<SpotDetailsScreen> {
             ),
             const SizedBox(height: 10),
             // Category, Rating and Established
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Club/Lounge',
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.amber,
-                      ),
-                ),
-                
-                // Star Rating
-                Row(
-                  children: List.generate(
-                    5,
-                    (index) => const Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                      size: 16,
-                    ),
-                  ),
-                ),
-                
-                const SizedBox(height: 8),
-                
-                // Established
-                Text(
-                  'Established 2021',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                
-                const SizedBox(height: 8),
-                
-                // Description
-                Text(
-                  'Platinum Lounge is a newly established cozy nightclub in Enugu. It is one of the attractions in the Platinum Event Centre, a major galleria in Enugu.',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-              ],
-            ),
-            
-            const SizedBox(height: 24),
-            
-            // Reviews Section
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Reviews Header
-                Text(
-                  'Reviews',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                
-                const SizedBox(height: 16),
-                
-                // Reviews List
-                ...reviewsToShow.map((review) => _buildReviewCard(context, review)),
-                
-                // Loading indicator or See more button
-                if (_isLoadingReviews)
-                  const Center(
-                    child: Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: CircularProgressIndicator(),
-                    ),
-                  )
-                else if (!_showAllReviews)
-                  Center(
-                    child: TextButton(
-                      onPressed: _loadMoreReviews,
-                      style: TextButton.styleFrom(
-                        backgroundColor: Colors.grey[800],
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.spotData['category'] ?? 'Club/Lounge',
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
                         ),
+                  ),
+                  // Star Rating
+                  Row(
+                    children: List.generate(
+                      widget.spotData['rating'] ?? 5,
+                      (index) => const Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                        size: 16,
                       ),
-                      child: const Text('See more'),
                     ),
                   ),
-              ],
+                  const SizedBox(height: 6),
+                  // Established
+                  Text(
+                    'Established ${widget.spotData['established'] ?? '2021'}',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  const SizedBox(height: 8),
+                  // Description
+                  Text(
+                    widget.spotData['description'] ?? 
+                    'Platinum Lounge is a newly established cozy nightclub in Enugu. It is one of the attractions in the Platinum Event Centre, a major galleria in Enugu.',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                ],
+              ),
+            ),
+            // Reviews Section
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Reviews Header
+                  Text(
+                    'Reviews',
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                  
+                  const SizedBox(height: 16),
+                  
+                  // Reviews List
+                  ...reviewsToShow.map((review) => _buildReviewCard(context, review)),
+                  
+                  // Loading indicator or See more button
+                  if (_isLoadingReviews)
+                    const Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: CircularProgressIndicator(),
+                      ),
+                    )
+                  else if (!_showAllReviews)
+                    Container(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: _loadMoreReviews,
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.grey[800],
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        child: const Text('See more'),
+                      ),
+                    ),
+                ],
+              ),
             ),
             
             const SizedBox(height: 24),
             
             // You may also like section
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'You may also like',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'You may also like',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'See all',
+                      style: TextStyle(
+                        color: Colors.red,
                       ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'See all',
-                    style: TextStyle(
-                      color: Colors.red,
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
