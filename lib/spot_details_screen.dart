@@ -156,7 +156,7 @@ class _SpotDetailsScreenState extends State<SpotDetailsScreen> {
                       (index) => const Icon(
                         Icons.star,
                         color: Colors.amber,
-                        size: 16,
+                        size: 11,
                       ),
                     ),
                   ),
@@ -267,6 +267,7 @@ class _SpotDetailsScreenState extends State<SpotDetailsScreen> {
               // Avatar
               CircleAvatar(
                 backgroundColor: Colors.grey[300],
+                radius: 16,
                 child: const Icon(Icons.person, color: Colors.grey),
               ),
               const SizedBox(width: 12),
@@ -280,6 +281,7 @@ class _SpotDetailsScreenState extends State<SpotDetailsScreen> {
                       review['name'],
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                             fontWeight: FontWeight.bold,
+                            fontSize: 13,
                           ),
                     ),
                     // Stars
@@ -289,7 +291,7 @@ class _SpotDetailsScreenState extends State<SpotDetailsScreen> {
                         (index) => const Icon(
                           Icons.star,
                           color: Colors.amber,
-                          size: 16,
+                          size: 11,
                         ),
                       ),
                     ),
@@ -302,6 +304,7 @@ class _SpotDetailsScreenState extends State<SpotDetailsScreen> {
                 review['date'],
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: Colors.grey,
+                      fontSize: 13,
                     ),
               ),
             ],
@@ -322,7 +325,10 @@ class _SpotDetailsScreenState extends State<SpotDetailsScreen> {
           // Review content
           Text(
             review['comment'],
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      fontSize: 13,
+                    ),
+
           ),
         ],
       ),
