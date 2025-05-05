@@ -54,6 +54,30 @@ class _SpotDetailsScreenState extends State<SpotDetailsScreen> {
     },
   ];
 
+  final List<Map<String, dynamic>> _placeData = [
+    {
+      'image': 'assets/images/gustavo.png',
+      'title': 'Gustavo by cubana',
+      'location': 'GRA + 3 others',
+      'subtitle': 'Dance club/Lounge',
+      'rating': '★★★★★',
+    },
+    {
+      'image': 'assets/images/gym.png',
+      'title': 'Cynthia Garden',
+      'location': 'Trans-Ekulu',
+      'subtitle': 'Hotel/Gym',
+      'rating': '★★★★★',
+    },
+    {
+      'image': 'assets/images/extreme_lounge.png',
+      'title': 'Extreme Lounge',
+      'location': 'Independence Layout',
+      'subtitle': 'Hotel/Gym',
+      'rating': '★★★★★',
+    },
+  ];
+
   Future<void> _loadMoreReviews() async {
     setState(() {
       _isLoadingReviews = true;
