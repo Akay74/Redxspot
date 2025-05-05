@@ -235,6 +235,7 @@ class _SpotDetailsScreenState extends State<SpotDetailsScreen> {
                     'You may also like',
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
+                          fontSize: 18,
                         ),
                   ),
                   TextButton(
