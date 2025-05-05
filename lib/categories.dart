@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'section_details_page.dart';
 import './widgets/place_card.dart';
 import './widgets/app_bar.dart';
+import 'spot_details_screen.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
@@ -117,14 +118,37 @@ class CategoriesScreen extends StatelessWidget {
               },
             ];
             
+            final spotData = {
+              'name': placeData[index]['title'],
+              'address': placeData[index]['location'],
+              'category': placeData[index]['subtitle'],
+              'rating': 5, // Assuming 5 stars based on the ratings string
+              'established': '2021', // Default value
+              'description': 'A popular spot in ${placeData[index]['location']}',
+              // Using the asset image path for now
+              'imageAsset': placeData[index]['image'],
+            };
+            
             return Padding(
               padding: const EdgeInsets.only(right: 16),
-              child: PlaceCard(
-                image: placeData[index]['image']!,
-                title: placeData[index]['title']!,
-                location: placeData[index]['location']!,
-                subtitle: placeData[index]['subtitle']!,
-                rating: placeData[index]['rating']!,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SpotDetailsScreen(
+                        spotData: spotData,
+                      ),
+                    ),
+                  );
+                },
+                child: PlaceCard(
+                  image: placeData[index]['image']!,
+                  title: placeData[index]['title']!,
+                  location: placeData[index]['location']!,
+                  subtitle: placeData[index]['subtitle']!,
+                  rating: placeData[index]['rating']!,
+                ),
               ),
             );
           },

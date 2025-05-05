@@ -3,6 +3,7 @@ import 'section_details_page.dart';
 import './widgets/place_card.dart';
 import './widgets/app_bar.dart';
 import './widgets/location_selector.dart';
+import 'spot_details_screen.dart';
 
 class LocationsScreen extends StatefulWidget {
   const LocationsScreen({super.key});
@@ -110,47 +111,70 @@ class _LocationsScreenState extends State<LocationsScreen> {
   }
 
   Widget _buildPlaceCards() {
-    final placeData = [
-      {
-        'image': 'assets/images/gustavo.png',
-        'title': 'Gustavo by cubana',
-        'location': _currentLocation,
-        'subtitle': 'Dance club/Lounge',
-        'rating': '★★★★★',
-      },
-      {
-        'image': 'assets/images/gym.png',
-        'title': 'Cynthia Garden',
-        'location': _currentLocation,
-        'subtitle': 'Hotel/Gym',
-        'rating': '★★★★★',
-      },
-      {
-        'image': 'assets/images/extreme_lounge.png',
-        'title': 'Extreme Lounge',
-        'location': _currentLocation,
-        'subtitle': 'Lounge/Bar',
-        'rating': '★★★★★',
-      },
-    ];
-
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: SizedBox(
         height: 170,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: placeData.length,
+          itemCount: 3,
           padding: const EdgeInsets.symmetric(vertical: 4),
           itemBuilder: (context, index) {
+            final placeData = [
+              {
+                'image': 'assets/images/gustavo.png',
+                'title': 'Gustavo by cubana',
+                'location': _currentLocation,
+                'subtitle': 'Dance club/Lounge',
+                'rating': '★★★★★',
+              },
+              {
+                'image': 'assets/images/gym.png',
+                'title': 'Cynthia Garden',
+                'location': _currentLocation,
+                'subtitle': 'Hotel/Gym',
+                'rating': '★★★★★',
+              },
+              {
+                'image': 'assets/images/extreme_lounge.png',
+                'title': 'Extreme Lounge',
+                'location': _currentLocation,
+                'subtitle': 'Hotel/Gym',
+                'rating': '★★★★★',
+              },
+            ];
+            
+            final spotData = {
+              'name': placeData[index]['title'],
+              'address': placeData[index]['location'],
+              'category': placeData[index]['subtitle'],
+              'rating': 5, // Assuming 5 stars based on the ratings string
+              'established': '2021', // Default value
+              'description': 'A popular spot in ${placeData[index]['location']}',
+              // Using the asset image path for now
+              'imageAsset': placeData[index]['image'],
+            };
+            
             return Padding(
               padding: const EdgeInsets.only(right: 16),
-              child: PlaceCard(
-                image: placeData[index]['image']!,
-                title: placeData[index]['title']!,
-                location: placeData[index]['location']!,
-                subtitle: placeData[index]['subtitle']!,
-                rating: placeData[index]['rating']!,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SpotDetailsScreen(
+                        spotData: spotData,
+                      ),
+                    ),
+                  );
+                },
+                child: PlaceCard(
+                  image: placeData[index]['image']!,
+                  title: placeData[index]['title']!,
+                  location: placeData[index]['location']!,
+                  subtitle: placeData[index]['subtitle']!,
+                  rating: placeData[index]['rating']!,
+                ),
               ),
             );
           },
