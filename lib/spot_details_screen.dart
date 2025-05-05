@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/sections_app_bar.dart';
+import '../widgets/place_card.dart';
+import 'section_details_page.dart';
 
 class SpotDetailsScreen extends StatefulWidget {
   final Map<String, dynamic> spotData;
