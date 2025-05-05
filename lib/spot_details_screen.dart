@@ -252,31 +252,99 @@ class _SpotDetailsScreenState extends State<SpotDetailsScreen> {
             const SizedBox(height: 24),
             
             // You may also like section
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'You may also like',
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'See all',
-                      style: TextStyle(
-                        color: Colors.red,
+            _buildSection(context, 'You may also like'),
+            _buildPlaceCards(context),
+
+            const SizedBox(height: 16),
+            
+            // People also visit section
+            _buildSection(context, 'People also visit'),
+            _buildPlaceCards(context),
+            
+            const SizedBox(height: 24),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSection(BuildContext context, String title) {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(title,
+              style: const TextStyle(
+                fontSize: 21,
+                fontWeight: FontWeight.w500,
+              )),
+          TextButton(
+            onPressed: () {
+              // Navigate to a new page based on the title
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SectionDetailsPage(title: title),
+                ),
+              );
+            },
+            child: const Text('See all',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red,
+                )),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPlaceCards(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: SizedBox(
+        height: 170,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: _placeData.length,
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          itemBuilder: (context, index) {
+            // Convert place data to format expected by SpotDetailsScreen
+            final spotData = {
+              'name': _placeData[index]['title'],
+              'address': _placeData[index]['location'],
+              'category': _placeData[index]['subtitle'],
+              'rating': 5, // Assuming 5 stars based on the ratings string
+              'established': '2021', // Default value
+              'description': 'A popular spot in ${_placeData[index]['location']}',
+              'imageAsset': _placeData[index]['image'],
+            };
+
+            return Padding(
+              padding: const EdgeInsets.only(right: 16),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SpotDetailsScreen(
+                        spotData: spotData,
                       ),
                     ),
-                  ),
-                ],
+                  );
+                },
+                child: PlaceCard(
+                  image: _placeData[index]['image']!,
+                  title: _placeData[index]['title']!,
+                  location: _placeData[index]['location']!,
+                  subtitle: _placeData[index]['subtitle']!,
+                  rating: _placeData[index]['rating']!,
+                ),
               ),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );
@@ -353,9 +421,8 @@ class _SpotDetailsScreenState extends State<SpotDetailsScreen> {
           Text(
             review['comment'],
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      fontSize: 13,
-                    ),
-
+                  fontSize: 13,
+                ),
           ),
         ],
       ),
