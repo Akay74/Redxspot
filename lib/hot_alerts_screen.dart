@@ -74,7 +74,7 @@ class HotAlertsScreen extends StatelessWidget {
 
   Widget _buildPlaceCards() {
     return Padding(
-      padding: const EdgeInsets.all(12.0),
+      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
       child: SizedBox(
         height: 170,
         child: ListView.builder(

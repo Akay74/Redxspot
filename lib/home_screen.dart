@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildSection(BuildContext context, String title) {
     return Padding(
-      padding: const EdgeInsets.all(12.0),
+      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -77,7 +77,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildPlaceCards(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(12.0),
+      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
       child: SizedBox(
         height: 170,
         child: ListView.builder(
