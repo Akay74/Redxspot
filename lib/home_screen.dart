@@ -24,19 +24,19 @@ class HomeScreen extends StatelessWidget {
 
         // Explore section
         const SectionHeader(title: 'Explore'),
-        const PlaceCardsList(),
+        const PlaceCardsList(category: 'Explore'),
 
         // Trending Places section
         const SectionHeader(title: 'Trending Places'),
-        const PlaceCardsList(),
+        const PlaceCardsList(category: 'Trending Places'),
 
         // Popular Places section
         const SectionHeader(title: 'Popular Places'),
-        const PlaceCardsList(),
+        const PlaceCardsList(category: 'Popular Places'),
 
         // Most Visited section
         const SectionHeader(title: 'Most Visited'),
-        const PlaceCardsList(),
+        const PlaceCardsList(category: 'Most Visited'),
       ]),
     );
   }
