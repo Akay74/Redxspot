@@ -2,24 +2,25 @@ import 'package:flutter/material.dart';
 import '../widgets/sections_app_bar.dart';
 import '../widgets/sections_header.dart';
 import '../widgets/sections_grid_items.dart';
+import 'spot_details_screen.dart';
 
 class SectionDetailsPage extends StatelessWidget {
   final String title;
   final String? subtitle;
   final List<Map<String, String>>? items;
-
+  
   const SectionDetailsPage({
     super.key,
     required this.title,
     this.subtitle,
     this.items,
   });
-
+  
   @override
   Widget build(BuildContext context) {
     final displayItems = items ?? _generateDefaultItems(title);
     final displaySubtitle = subtitle ?? 'Explore $title locations';
-
+    
     return Scaffold(
       appBar: SectionsAppBar(),
       body: Padding(
@@ -37,7 +38,8 @@ class SectionDetailsPage extends StatelessWidget {
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 570),
                   child: GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
@@ -46,6 +48,19 @@ class SectionDetailsPage extends StatelessWidget {
                     itemCount: displayItems.length,
                     itemBuilder: (context, index) {
                       final item = displayItems[index];
+                      
+                      // Convert item data to format expected by SpotDetailsScreen
+                      final spotData = {
+                        'name': item['title'],
+                        'address': item['location'],
+                        'category': item['subtitle'],
+                        'rating': 5, // Assuming 5 stars based on the rating string
+                        'established': '2021', // Default value
+                        'description': 'A popular ${item['subtitle']} located in ${item['location']}',
+                        // Using the asset image path for now
+                        'imageAsset': item['image'],
+                      };
+                      
                       return GestureDetector(
                         child: SectionGridItem(
                           image: item['image']!,
@@ -53,7 +68,16 @@ class SectionDetailsPage extends StatelessWidget {
                           location: item['location']!,
                           subtitle: item['subtitle']!,
                           rating: item['rating']!,
-                          onTap: () => _showPlaceholder(context),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SpotDetailsScreen(
+                                  spotData: spotData,
+                                ),
+                              ),
+                            );
+                          },
                         ),
                       );
                     },
@@ -66,7 +90,7 @@ class SectionDetailsPage extends StatelessWidget {
       ),
     );
   }
-
+  
   List<Map<String, String>> _generateDefaultItems(String category) {
     return [
       {
@@ -112,21 +136,5 @@ class SectionDetailsPage extends StatelessWidget {
         'rating': '★★★★★',
       },
     ];
-  }
-
-  void _showPlaceholder(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Coming Soon'),
-        content: const Text('This feature is under development'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('OK'),
-          ),
-        ],
-      ),
-    );
   }
 }
