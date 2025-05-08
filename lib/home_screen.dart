@@ -3,7 +3,13 @@ import './widgets/app_bar.dart';
 import './widgets/section_header.dart';
 import './widgets/place_card_list.dart';
 
+/// The main home screen of the application.
+///
+/// This screen presents a variety of content sections including Explore,
+/// Trending Places, Popular Places, and Most Visited. Each section displays
+/// a list of place cards relevant to that category.
 class HomeScreen extends StatelessWidget {
+  /// Creates a HomeScreen.
   const HomeScreen({super.key});
 
   @override
@@ -14,10 +20,15 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  /// Builds the main content of the home screen.
+  ///
+  /// The content includes a hero image at the top followed by several sections,
+  /// each with its own [SectionHeader] and [PlaceCardsList]. Each section displays
+  /// places filtered by their respective categories.
   Widget _buildHomeContent(BuildContext context) {
     return SingleChildScrollView(
       child: Column(children: [
-        // hero image
+        // Hero image
         SizedBox(
           child: Image.asset('assets/images/home_hero.png'),
         ),

@@ -4,11 +4,28 @@ import '../widgets/sections_header.dart';
 import '../widgets/sections_grid_items.dart';
 import 'spot_details_screen.dart';
 
+/// A page that displays all items within a specific section or category.
+///
+/// This page shows a grid of places belonging to a particular category or section,
+/// allowing users to browse through them and navigate to detailed views.
 class SectionDetailsPage extends StatelessWidget {
+  /// The title of the section.
   final String title;
+  
+  /// An optional subtitle for the section.
   final String? subtitle;
+  
+  /// An optional list of items to display in the section.
+  ///
+  /// Each item is a map containing details such as image path, title,
+  /// location, subtitle, and rating.
   final List<Map<String, String>>? items;
   
+  /// Creates a SectionDetailsPage.
+  ///
+  /// The [title] parameter is required.
+  /// If [subtitle] is not provided, a default subtitle of "Explore [title] locations" is used.
+  /// If [items] is not provided, a default list of items is generated based on the [title].
   const SectionDetailsPage({
     super.key,
     required this.title,
@@ -54,10 +71,9 @@ class SectionDetailsPage extends StatelessWidget {
                         'name': item['title'],
                         'address': item['location'],
                         'category': item['subtitle'],
-                        'rating': 5, // Assuming 5 stars based on the rating string
+                        'rating': 5, // Default 5 stars
                         'established': '2021', // Default value
                         'description': 'A popular ${item['subtitle']} located in ${item['location']}',
-                        // Using the asset image path for now
                         'imageAsset': item['image'],
                       };
                       
@@ -91,6 +107,10 @@ class SectionDetailsPage extends StatelessWidget {
     );
   }
   
+  /// Generates a default list of items based on the section title.
+  ///
+  /// This is used when no explicit items are provided in the constructor.
+  /// Returns a list of maps, each representing a place with its details.
   List<Map<String, String>> _generateDefaultItems(String category) {
     return [
       {

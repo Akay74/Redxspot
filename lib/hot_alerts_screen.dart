@@ -1,10 +1,14 @@
-// hot_alerts_screen.dart
 import 'package:flutter/material.dart';
 import './widgets/app_bar.dart';
 import './widgets/section_header.dart';
 import './widgets/place_card_list.dart';
 
+/// A screen that displays current hotspots and special alerts.
+///
+/// This screen presents sections for HotSpots, New Places, and Weekend Spotlight,
+/// highlighting trending and notable locations for users to explore.
 class HotAlertsScreen extends StatelessWidget {
+  /// Creates a HotAlertsScreen.
   const HotAlertsScreen({super.key});
 
   @override
@@ -15,10 +19,15 @@ class HotAlertsScreen extends StatelessWidget {
     );
   }
 
+  /// Builds the main content of the hot alerts screen.
+  ///
+  /// The content includes a hero image at the top, followed by sections
+  /// for HotSpots, New Places, and Weekend Spotlight, each with its own
+  /// [SectionHeader] and [PlaceCardsList].
   Widget _buildHotAlertsContent(BuildContext context) {
     return SingleChildScrollView(
       child: Column(children: [
-        // hero image
+        // Hero image
         SizedBox(
           child: Image.asset('assets/images/hot_alerts_hero.png'),
         ),

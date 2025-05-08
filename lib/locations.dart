@@ -4,15 +4,24 @@ import './widgets/location_selector.dart';
 import './widgets/section_header.dart';
 import './widgets/place_card_list.dart';
 
+/// A screen that displays places organized by geographic location.
+///
+/// This screen allows users to select a location from a dropdown menu and
+/// view places specific to that location across various categories.
 class LocationsScreen extends StatefulWidget {
+  /// Creates a LocationsScreen.
   const LocationsScreen({super.key});
 
   @override
   State<LocationsScreen> createState() => _LocationsScreenState();
 }
 
+/// The state for the [LocationsScreen] widget.
 class _LocationsScreenState extends State<LocationsScreen> {
-  String _currentLocation = 'New Haven'; // Track selected location
+  /// The currently selected location.
+  ///
+  /// Default is set to 'New Haven'.
+  String _currentLocation = 'New Haven';
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +29,16 @@ class _LocationsScreenState extends State<LocationsScreen> {
       appBar: CustomAppBar(),
       body: Column(
         children: [
-          // Add the LocationSelector at the top
+          // Location selector dropdown
           LocationSelector(
             onLocationSelected: (location) {
               setState(() {
                 _currentLocation = location;
               });
-              // You could add location-specific data fetching here
+              // Location-specific data fetching would happen here
             },
           ),
-          // Your existing content (now wrapped in Expanded)
+          // Main content wrapped in Expanded
           Expanded(
             child: _buildLocationsContent(context),
           ),
@@ -38,18 +47,24 @@ class _LocationsScreenState extends State<LocationsScreen> {
     );
   }
 
+  /// Builds the main content of the locations screen based on the selected location.
+  ///
+  /// The content includes a location-specific hero image followed by multiple sections
+  /// for different categories (Explore, Bars, Clubs, etc.), each with its own [SectionHeader]
+  /// and location-filtered [PlaceCardsList].
   Widget _buildLocationsContent(BuildContext context) {
     return SingleChildScrollView(
       child: Column(children: [
-        // hero image (now shows location-specific image)
+        // Location-specific hero image
         SizedBox(
           child: Image.asset(
             'assets/images/locations_hero.png',
+            // Dynamic path would be:
             // 'assets/images/locations/${_currentLocation.toLowerCase().replaceAll(' ', '_')}_hero.png',
           ),
         ),
         
-        // Restaurants section (now shows location-specific places)
+        // Explore section (location-specific)
         const SectionHeader(title: 'Explore'),
         PlaceCardsList(currentLocation: _currentLocation),
         

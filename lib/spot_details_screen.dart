@@ -1,9 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+/// A screen that displays detailed information about a specific place or spot.
+///
+/// This screen shows comprehensive information about a place including its image,
+/// name, address, category, rating, description, contact information, opening hours,
+/// and provides action buttons for directions and calling.
 class SpotDetailsScreen extends StatelessWidget {
+  /// The data of the spot to display.
+  ///
+  /// This map should contain various details about the spot such as:
+  /// - name: The name of the spot
+  /// - address: The physical address
+  /// - category: The type of establishment
+  /// - rating: A numerical rating (typically 1-5)
+  /// - established: The year established
+  /// - description: A text description
+  /// - imageAsset: The path to an asset image (optional if photoUrl is provided)
+  /// - photoUrl: A URL to an image (optional)
+  /// - phoneNumber: Contact phone number (optional)
+  /// - website: The website URL (optional)
+  /// - openingHours: List of opening hours strings (optional)
+  /// - priceLevel: Price level as an integer (optional)
+  /// - userRatingsTotal: Total number of user ratings (optional)
   final Map<String, dynamic> spotData;
 
+  /// Creates a SpotDetailsScreen.
+  ///
+  /// The [spotData] parameter must not be null.
   const SpotDetailsScreen({
     super.key,
     required this.spotData,
@@ -123,6 +147,9 @@ class SpotDetailsScreen extends StatelessWidget {
     );
   }
 
+  /// Builds the information section card with address, rating, category, and establishment year.
+  ///
+  /// This section provides an overview of the key details of the spot.
   Widget _buildInfoSection(BuildContext context) {
     return Card(
       elevation: 2,
@@ -237,6 +264,9 @@ class SpotDetailsScreen extends StatelessWidget {
     );
   }
 
+  /// Builds the contact information section with phone number and website.
+  ///
+  /// This section is only displayed if phone number or website information is available.
   Widget _buildContactInfo() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -293,6 +323,9 @@ class SpotDetailsScreen extends StatelessWidget {
     );
   }
 
+  /// Builds the opening hours section showing the business hours.
+  ///
+  /// This section is only displayed if opening hours information is available.
   Widget _buildOpeningHours() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -322,6 +355,9 @@ class SpotDetailsScreen extends StatelessWidget {
     );
   }
 
+  /// Builds the action buttons for directions and calling.
+  ///
+  /// These buttons allow users to quickly navigate to the location or contact the business.
   Widget _buildActionButtons(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -330,7 +366,6 @@ class SpotDetailsScreen extends StatelessWidget {
           icon: const Icon(Icons.directions),
           label: const Text('Directions'),
           onPressed: () {
-            // Launch Google Maps with directions
             _launchDirections();
           },
           style: ElevatedButton.styleFrom(
@@ -353,6 +388,9 @@ class SpotDetailsScreen extends StatelessWidget {
     );
   }
 
+  /// Launches a URL in the device's browser or appropriate app.
+  ///
+  /// [urlString] is the URL to be launched.
   void _launchUrl(String urlString) async {
     final Uri url = Uri.parse(urlString);
     if (await canLaunchUrl(url)) {
@@ -362,8 +400,8 @@ class SpotDetailsScreen extends StatelessWidget {
     }
   }
 
+  /// Launches Google Maps with directions to the spot's address.
   void _launchDirections() async {
-    // Use the address to generate a Google Maps directions URL
     final String googleMapsUrl = 'https://www.google.com/maps/dir/?api=1&destination=${Uri.encodeComponent(spotData['address'])}';
     _launchUrl(googleMapsUrl);
   }
