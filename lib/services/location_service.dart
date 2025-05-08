@@ -1,8 +1,18 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+/// A service that provides location-related functionality.
+///
+/// This service handles location permissions, retrieves the current device location,
+/// and provides coordinates for named locations.
 class LocationService {
-  /// Checks and requests location permissions using permission_handler
+  /// Checks and requests location permissions.
+  ///
+  /// Returns a [Future<bool>] that completes with:
+  /// - `true` if permissions are granted
+  /// - `false` if permissions are denied or restricted
+  ///
+  /// Throws an [Exception] if location services are disabled or access is restricted.
   static Future<bool> _checkAndRequestPermissions() async {
     // Check if location services are enabled
     if (!await Geolocator.isLocationServiceEnabled()) {
@@ -30,7 +40,16 @@ class LocationService {
     return false;
   }
 
-  /// Gets the current position with proper permission handling
+  /// Gets the current device location.
+  ///
+  /// Handles permission requests and retrieves the current geographical position.
+  ///
+  /// Returns a [Future<Position>] containing the device's current location.
+  ///
+  /// Throws an [Exception] if:
+  /// - Location permissions are denied
+  /// - Location services are disabled
+  /// - Getting the current position fails
   static Future<Position> getCurrentLocation() async {
     // Check and request permissions
     final hasPermission = await _checkAndRequestPermissions();
@@ -38,7 +57,6 @@ class LocationService {
       throw Exception('Location permissions are required to continue.');
     }
 
-    // Get the current position
     try {
       return await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.best,
@@ -48,9 +66,25 @@ class LocationService {
     }
   }
 
-  /// Gets coordinates for a named location (with fallback to current location)
+  /// Gets coordinates for a named location with fallback to current location.
+  ///
+  /// Provides latitude and longitude for predefined named locations.
+  /// If the requested location name is not found, falls back to the device's
+  /// current location.
+  ///
+  /// [locationName] The name of the location to look up
+  ///
+  /// Returns a [Future<Map<String, double>>] containing 'latitude' and 'longitude' keys.
+  ///
+  /// Throws an [Exception] if both named location lookup and current location fallback fail.
+  /// 
+  /// TODO: Replace hardcoded locations with geocoding API in production
   static Future<Map<String, double>> getLocationCoordinates(String locationName) async {
-    // Hardcoded locations - replace with geocoding API in production
+    if (locationName.isEmpty) {
+      throw Exception('Location name cannot be empty');
+    }
+    
+    // Hardcoded locations map
     final locationMap = {
       'New Haven': {'latitude': 41.3083, 'longitude': -72.9279},
       'GRA': {'latitude': 6.4489, 'longitude': 3.3892},
@@ -58,12 +92,14 @@ class LocationService {
       'Independence Layout': {'latitude': 6.4311, 'longitude': 7.4931},
     };
 
-    // Return known location if available
-    if (locationMap.containsKey(locationName)) {
-      return locationMap[locationName]!;
+    // Check for case-insensitive matches
+    final normalizedName = locationName.trim().toLowerCase();
+    for (final entry in locationMap.entries) {
+      if (entry.key.toLowerCase() == normalizedName) {
+        return entry.value;
+      }
     }
 
-    // Fallback to current location
     try {
       final position = await getCurrentLocation();
       return {
